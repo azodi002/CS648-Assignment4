@@ -1,0 +1,37 @@
+enum CategoryType {
+  Shirts
+  Jeans
+  Jackets
+  Sweaters
+  Accessories
+}
+
+type Product {
+  _id: ID! 
+  id: Int!
+  category: CategoryType!
+  product_name: String!
+  price: Float
+  image_path: String
+}
+
+"Toned down Issue, used as inputs, without server generated values."
+input ProductInputs {
+  "Optional, if not supplied, will be set to 'Shirts'"
+  category: CategoryType = Shirts
+  product_name: String
+  price: Float
+  image_path: String
+}
+
+##### Top level declarations
+
+type Query {
+  about: String!
+  productList: [Product!]!
+}
+
+type Mutation {
+  setAboutMessage(message: String!): String
+  productAdd(product: ProductInputs!): Product!
+}
